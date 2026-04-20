@@ -1,71 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'forge-platform-page',
   standalone: true,
   template: `
-    <section class="page">
-      <h1>Платформа (LMS)</h1>
-      <p class="muted">
-        Заглушка: после auth сюда будет редирект. Здесь появятся курсы, прогресс, группы и чат.
-      </p>
+    <section class="mx-auto max-w-[1100px] px-5 py-12">
+      <div class="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h1 class="text-3xl font-black">Платформа (LMS)</h1>
+          <p class="mt-2 text-white/80">
+            Заглушка: после auth сюда будет редирект. Здесь появятся курсы, прогресс, группы и чат.
+          </p>
+        </div>
 
-      <div class="grid">
-        <div class="card">
-          <div class="card__title">Мой прогресс</div>
-          <div class="card__desc">Уровни, достижения, streak.</div>
+        @if (user(); as u) {
+          <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+            <div class="text-sm text-white/70">Аккаунт</div>
+            <div class="font-black">{{ u.name }}</div>
+          </div>
+        }
+      </div>
+
+      <div class="mt-5 grid gap-3 md:grid-cols-3">
+        <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+          <div class="font-black">Мой прогресс</div>
+          <div class="mt-1 text-white/80">Уровни, достижения, streak.</div>
         </div>
-        <div class="card">
-          <div class="card__title">Курсы</div>
-          <div class="card__desc">Список доступных курсов и уроков.</div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+          <div class="font-black">Курсы</div>
+          <div class="mt-1 text-white/80">Список доступных курсов и уроков.</div>
         </div>
-        <div class="card">
-          <div class="card__title">Чат</div>
-          <div class="card__desc">Групповые чаты (в будущем).</div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+          <div class="font-black">Чат</div>
+          <div class="mt-1 text-white/80">Групповые чаты (в будущем).</div>
         </div>
+      </div>
+
+      <div class="mt-6">
+        <button
+          type="button"
+          class="rounded-xl px-4 py-3 font-black text-white/90 border border-white/10 bg-white/5 hover:bg-white/10"
+          (click)="onLogout()"
+        >
+          Выйти
+        </button>
       </div>
     </section>
   `,
-  styles: [
-    `
-      .page {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 48px 20px 80px;
-      }
-
-      .muted {
-        opacity: 0.85;
-      }
-
-      .grid {
-        display: grid;
-        gap: 12px;
-        margin-top: 18px;
-      }
-
-      .card {
-        border-radius: 18px;
-        border: 1px solid color-mix(in oklch, var(--c-border) 70%, transparent);
-        background: color-mix(in oklch, var(--c-card) 88%, transparent);
-        padding: 18px 16px;
-      }
-
-      .card__title {
-        font-weight: 900;
-      }
-
-      .card__desc {
-        opacity: 0.85;
-        margin-top: 6px;
-      }
-
-      @media (min-width: 900px) {
-        .grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-      }
-    `,
-  ],
 })
-export class PlatformPage {}
+export class PlatformPage {
+  private readonly auth = inject(AuthService);
+  protected readonly user = this.auth.user;
+
+  async onLogout(): Promise<void> {
+    await this.auth.logout();
+  }
+}
