@@ -130,6 +130,23 @@ import { Component, Input } from '@angular/core';
         transform: translateY(calc((1 - var(--story-progress)) * 10px));
       }
 
+      /* Cute blink once robot is fully assembled */
+      .part--eyes {
+        animation: blink 5s infinite;
+        animation-delay: calc(2s + (1 - var(--story-progress)) * 2s);
+      }
+
+      @keyframes blink {
+        0%,
+        92%,
+        100% {
+          transform: translateY(calc((1 - var(--story-progress)) * 10px)) scaleY(1);
+        }
+        95% {
+          transform: translateY(calc((1 - var(--story-progress)) * 10px)) scaleY(0.1);
+        }
+      }
+
       .part--arms {
         opacity: clamp(0, calc((var(--story-progress) - 0.62) * 3), 1);
         transform: translateX(calc((1 - var(--story-progress)) * 10px));
@@ -150,6 +167,7 @@ import { Component, Input } from '@angular/core';
           transition: none;
           transform: none !important;
           opacity: 1 !important;
+          animation: none !important;
         }
       }
     `,

@@ -42,7 +42,7 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
         <ol class="mt-5 grid gap-2">
           @for (stage of stages; track stage.id) {
             <li
-              class="rounded-2xl border border-white/10 bg-white/5 p-4 transition"
+              class="forge-surface p-4 transition"
               [class.opacity-100]="activeStageId() === stage.id"
               [class.opacity-65]="activeStageId() !== stage.id"
             >
