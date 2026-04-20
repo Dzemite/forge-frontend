@@ -1,17 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
+import { ProgressDashboardComponent } from './ui/progress-dashboard/progress-dashboard.component';
 
 @Component({
   selector: 'forge-platform-page',
   standalone: true,
+  imports: [ProgressDashboardComponent],
   template: `
     <section class="mx-auto max-w-[1100px] px-5 py-12">
       <div class="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 class="text-3xl font-black">Платформа (LMS)</h1>
-          <p class="mt-2 text-white/80">
-            Заглушка: после auth сюда будет редирект. Здесь появятся курсы, прогресс, группы и чат.
-          </p>
+          <p class="mt-2 text-white/80">Твой кабинет: прогресс, курсы, группы и чат (скоро).</p>
         </div>
 
         @if (user(); as u) {
@@ -22,19 +22,8 @@ import { AuthService } from '../../core/auth/auth.service';
         }
       </div>
 
-      <div class="mt-5 grid gap-3 md:grid-cols-3">
-        <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-          <div class="font-black">Мой прогресс</div>
-          <div class="mt-1 text-white/80">Уровни, достижения, streak.</div>
-        </div>
-        <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-          <div class="font-black">Курсы</div>
-          <div class="mt-1 text-white/80">Список доступных курсов и уроков.</div>
-        </div>
-        <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-          <div class="font-black">Чат</div>
-          <div class="mt-1 text-white/80">Групповые чаты (в будущем).</div>
-        </div>
+      <div class="mt-5">
+        <forge-progress-dashboard />
       </div>
 
       <div class="mt-6">
