@@ -37,6 +37,7 @@ export const routes: Routes = [
       },
       {
         path: 'platform',
+        canMatch: [() => import('./core/guards/auth.guard').then((m) => m.authGuard)],
         loadComponent: () => import('./features/platform/platform.page').then((m) => m.PlatformPage),
       },
       {

@@ -1,62 +1,42 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'forge-register-page',
   standalone: true,
   imports: [RouterLink],
   template: `
-    <section class="page">
-      <div class="card">
-        <h1>Регистрация</h1>
-        <p class="muted">Заглушка. Дальше будет форма + подтверждение.</p>
+    <section class="min-h-[calc(100dvh-var(--header-height))] grid place-items-center px-5 py-10">
+      <div
+        class="w-full max-w-[520px] rounded-2xl border border-white/10 bg-white/5 backdrop-blur px-4 py-5"
+      >
+        <h1 class="text-2xl font-black">Регистрация</h1>
+        <p class="mt-2 text-white/80">MVP: создаём cookie-сессию (пока мок).</p>
 
-        <div class="actions">
-          <a class="btn" routerLink="/platform">Создать аккаунт и перейти в платформу</a>
-          <a class="link" routerLink="/auth/login">Уже есть аккаунт? Войти</a>
+        <div class="mt-4 grid gap-2">
+          <button
+            type="button"
+            class="rounded-xl px-4 py-3 font-black text-white bg-gradient-to-br from-[color:var(--c-accent)] to-[color:var(--c-accent-2)]"
+            (click)="onRegister()"
+          >
+            Создать аккаунт
+          </button>
+
+          <a class="text-center font-bold text-white/80 hover:text-white" routerLink="/auth/login">
+            Уже есть аккаунт? Войти
+          </a>
         </div>
       </div>
     </section>
   `,
-  styles: [
-    `
-      .page {
-        min-height: calc(100dvh - var(--header-height));
-        display: grid;
-        place-items: center;
-        padding: 40px 20px;
-      }
-      .card {
-        width: min(520px, 100%);
-        border-radius: 18px;
-        border: 1px solid color-mix(in oklch, var(--c-border) 70%, transparent);
-        background: color-mix(in oklch, var(--c-card) 88%, transparent);
-        padding: 18px 16px;
-      }
-      .muted {
-        opacity: 0.85;
-      }
-      .actions {
-        display: grid;
-        gap: 10px;
-        margin-top: 14px;
-      }
-      .btn {
-        text-decoration: none;
-        font-weight: 900;
-        padding: 12px 14px;
-        border-radius: 14px;
-        background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-accent-2) 100%);
-        color: white;
-        text-align: center;
-      }
-      .link {
-        text-decoration: none;
-        color: color-mix(in oklch, var(--c-text) 85%, var(--c-muted));
-        text-align: center;
-        font-weight: 700;
-      }
-    `,
-  ],
 })
-export class RegisterPage {}
+export class RegisterPage {
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
+
+  async onRegister(): Promise<void> {
+    await this.auth.register();
+    await this.router.navigateByUrl('/platform');
+  }
+}
