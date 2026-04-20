@@ -1,10 +1,13 @@
 import { Component, computed, inject } from '@angular/core';
 import { ProgressStore } from '../../../../core/services/progress/progress.store';
 import { CoursesRepository } from '../../../courses/data/courses.repository';
+import { ProgressBarComponent } from '../../../../shared/ui/progress-bar/progress-bar.component';
+import { LevelCardComponent } from '../../../../shared/ui/level-card/level-card.component';
 
 @Component({
   selector: 'forge-progress-dashboard',
   standalone: true,
+  imports: [ProgressBarComponent, LevelCardComponent],
   template: `
     <div class="grid gap-3 lg:grid-cols-3">
       <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
@@ -13,11 +16,8 @@ import { CoursesRepository } from '../../../courses/data/courses.repository';
           <div class="text-3xl font-black">{{ vm().completionPercent }}%</div>
           <div class="text-sm text-white/70">streak: {{ vm().streakDays }} дн.</div>
         </div>
-        <div class="mt-3 h-2 rounded-full bg-white/10 overflow-hidden">
-          <div
-            class="h-full bg-gradient-to-r from-[color:var(--c-accent)] to-[color:var(--c-accent-2)]"
-            [style.width.%]="vm().completionPercent"
-          ></div>
+        <div class="mt-3">
+          <forge-progress-bar [value]="vm().completionPercent" />
         </div>
       </div>
 
@@ -35,8 +35,10 @@ import { CoursesRepository } from '../../../courses/data/courses.repository';
 
       <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
         <div class="text-sm text-white/70">Текущий уровень</div>
-        <div class="mt-1 text-xl font-black">{{ activeLevel().title }}</div>
-        <div class="mt-2 text-white/80">{{ activeLevel().subtitle }}</div>
+        <div class="mt-3">
+          <forge-level-card [level]="activeLevel()" [progressPercent]="vm().completionPercent" />
+        </div>
+
         <div class="mt-3 flex flex-wrap gap-2">
           @for (lvl of levels; track lvl.id) {
             <button
