@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'forge-robot-assembly',
   standalone: true,
   template: `
-    <div class="relative aspect-[4/3] w-full">
+    <div class="relative w-full" style="aspect-ratio: 4 / 3; min-height: 260px;">
       <svg
         class="absolute inset-0 h-full w-full"
         viewBox="0 0 400 300"
