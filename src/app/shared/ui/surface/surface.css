@@ -1,0 +1,6 @@
+@layer components {
+  .forge-surface {
+    @apply rounded-2xl bg-white/5 backdrop-blur;
+    border: 1px solid color-mix(in oklch, var(--forge-sys-outline) 55%, transparent);
+  }
+}

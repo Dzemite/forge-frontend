@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './styles/forge.css';
+
+
 :root {
   --header-height: 64px;
 

@@ -1,0 +1,9 @@
+@layer components {
+  .forge-surface {
+    border-radius: 1rem; /* ~rounded-2xl */
+    background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in oklch, var(--forge-sys-outline) 55%, transparent);
+  }
+}
