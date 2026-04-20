@@ -1,0 +1,40 @@
+:root {
+  --header-height: 64px;
+
+  --c-bg: oklch(14% 0.02 280);
+  --c-card: oklch(18% 0.02 280);
+  --c-border: oklch(30% 0.02 280);
+  --c-text: oklch(95% 0.02 280);
+  --c-muted: oklch(70% 0.02 280);
+
+  --c-accent: oklch(68% 0.22 265);
+  --c-accent-2: oklch(67% 0.22 315);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--c-text);
+  background: radial-gradient(circle at 10% 10%, color-mix(in oklch, var(--c-accent) 22%, transparent), transparent 40%),
+    radial-gradient(circle at 90% 0%, color-mix(in oklch, var(--c-accent-2) 18%, transparent), transparent 45%),
+    var(--c-bg);
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
