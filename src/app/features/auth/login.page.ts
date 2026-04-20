@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AuthService } from '../../core/auth/auth.service';
 
@@ -16,6 +17,7 @@ import { AuthService } from '../../core/auth/auth.service';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
   ],
   template: `
     <section class="min-h-[calc(100dvh-var(--header-height))] grid place-items-center px-5 py-10">
@@ -31,7 +33,21 @@ import { AuthService } from '../../core/auth/auth.service';
 
           <mat-form-field appearance="outline" class="w-full">
             <mat-label>Пароль</mat-label>
-            <input matInput type="password" formControlName="password" autocomplete="current-password" />
+            <input
+              matInput
+              [type]="passwordVisible() ? 'text' : 'password'"
+              formControlName="password"
+              autocomplete="current-password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="togglePasswordVisibility()"
+              [attr.aria-label]="passwordVisible() ? 'Скрыть пароль' : 'Показать пароль'"
+            >
+              <mat-icon>{{ passwordVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
           </mat-form-field>
 
           <button
@@ -56,11 +72,16 @@ export class LoginPage {
   private readonly router = inject(Router);
 
   protected readonly isLoading = this.auth.status;
+  protected readonly passwordVisible = signal(false);
 
   protected readonly form = new FormGroup({
     email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
     password: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
   });
+
+  togglePasswordVisibility(): void {
+    this.passwordVisible.update((v) => !v);
+  }
 
   async onSubmit(): Promise<void> {
     if (this.form.invalid) return;
