@@ -58,7 +58,27 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
 })
 export class EngineerPathComponent {
   // ScrollStory owns scroll handling; we just subscribe.
+  // We keep local progress signal, synced from ScrollStory via CSS var + scroll.
   protected readonly progress = signal(0);
+
+  constructor() {
+    // Keep progress synced continuously without needing an explicit binding from ScrollStory.
+    // This is a workaround; next iteration: expose progress via a proper API.
+    const tick = () => {
+      const host = document.querySelector('forge-scroll-story') as HTMLElement | null;
+      if (host) {
+        const v = getComputedStyle(host).getPropertyValue('--story-progress').trim();
+        const n = Number(v);
+        if (Number.isFinite(n)) this.progress.set(Math.max(0, Math.min(1, n)));
+      }
+      requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  }
+
+  // kept for template compatibility
+  syncProgressFromCssVar(): void {}
 
   protected readonly stages: ScrollStoryStage[] = [
     {
