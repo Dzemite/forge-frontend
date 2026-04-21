@@ -6,8 +6,9 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <footer class="mt-16 px-5 pb-10">
-      <div class="mx-auto max-w-[1200px] forge-surface forge-surface--tight">
+    <footer class="mt-16 pb-10">
+      <div class="forge-surface forge-surface--tight w-full">
+        <div class="mx-auto max-w-[1200px] px-5">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div class="text-sm font-black tracking-wide text-white/85">Инженер360</div>
@@ -23,7 +24,8 @@ import { RouterLink } from '@angular/router';
 
         <div class="mt-4 text-xs text-white/55">© {{ year }} Инженер360. MVP.</div>
       </div>
-    </footer>
+    </div>
+  </footer>
   `,
 })
 export class FooterComponent {

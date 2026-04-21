@@ -24,7 +24,7 @@ import { Component, Input } from '@angular/core';
           </radialGradient>
 
           <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="10" />
+            <feGaussianBlur stdDeviation="6" />
           </filter>
         </defs>
 
@@ -100,7 +100,7 @@ import { Component, Input } from '@angular/core';
       .part {
         transform-box: fill-box;
         transform-origin: center;
-        transition: transform 80ms linear, opacity 80ms linear;
+        transition: transform 40ms linear, opacity 40ms linear;
         will-change: transform, opacity;
       }
 
@@ -111,8 +111,8 @@ import { Component, Input } from '@angular/core';
       }
 
       .part--glow {
-        opacity: calc(0.15 + var(--story-progress) * 0.55);
-        transform: scale(calc(0.95 + var(--story-progress) * 0.08));
+        opacity: calc(0.10 + var(--story-progress) * 0.45);
+        transform: scale(calc(0.98 + var(--story-progress) * 0.05));
       }
 
       .part--body {
