@@ -1,11 +1,6 @@
 @use './styles/material-theme';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import './styles/forge.css';
-@import './styles/tw-utilities.css';
 
 
 :root {
