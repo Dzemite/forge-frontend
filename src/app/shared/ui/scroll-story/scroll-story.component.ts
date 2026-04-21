@@ -25,7 +25,7 @@ export type ScrollStoryStage = {
   template: `
     <section class="relative px-5">
       <div class="sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] flex items-center">
-        <div class="mx-auto w-full max-w-[1200px] grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="mx-auto w-full max-w-[1200px] grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div class="relative flex items-center">
             <ng-content select="[storyBackground]" />
           </div>
