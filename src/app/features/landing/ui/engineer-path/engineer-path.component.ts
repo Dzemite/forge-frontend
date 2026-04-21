@@ -42,12 +42,13 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
         <ol class="mt-5 grid gap-2">
           @for (stage of stages; track stage.id) {
             <li
-              class="forge-surface forge-surface--tight forge-surface--interactive"
+              class="forge-surface forge-surface--loose forge-surface--interactive"
               [class.opacity-100]="activeStageId() === stage.id"
               [class.opacity-65]="activeStageId() !== stage.id"
             >
-              <div class="font-black">{{ stage.title }}</div>
-              <div class="mt-1 text-white/80">{{ stage.description }}</div>
+              <div class="text-sm font-black tracking-wide text-white/85">Этап</div>
+              <div class="mt-1 font-black">{{ stage.title }}</div>
+              <div class="mt-2 text-white/80 leading-relaxed">{{ stage.description }}</div>
             </li>
           }
         </ol>

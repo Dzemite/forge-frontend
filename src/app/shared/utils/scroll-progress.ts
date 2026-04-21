@@ -5,10 +5,16 @@ export type ScrollProgressOptions = {
   distancePx: number;
   /** Optional easing */
   ease?: (t: number) => number;
+  /** Optional smoothing factor (0..1). Higher = smoother. */
+  smoothing?: number;
 };
 
 export function clamp01(v: number): number {
   return Math.max(0, Math.min(1, v));
+}
+
+export function lerp(a: number, b: number, t: number): number {
+  return a + (b - a) * t;
 }
 
 export function computeScrollProgress(sectionRect: DOMRect, viewportHeight: number, opts: ScrollProgressOptions): number {

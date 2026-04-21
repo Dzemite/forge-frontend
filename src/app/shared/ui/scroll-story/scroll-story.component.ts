@@ -9,7 +9,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { computeScrollProgress, easeInOutCubic } from '../../utils/scroll-progress';
+import { computeScrollProgress, easeInOutCubic, lerp } from '../../utils/scroll-progress';
 
 export type ScrollStoryStage = {
   id: string;
@@ -52,6 +52,9 @@ export class ScrollStoryComponent implements AfterViewInit {
   /** Full progress 0..1 */
   readonly progress = signal(0);
 
+  // smoothing state
+  private smooth = 0;
+
   // Also expose progress as CSS custom property for layered animations.
   // Consumers can use: style="transform: translateX(calc(var(--story-progress) * 10px))" etc.
 
@@ -68,16 +71,21 @@ export class ScrollStoryComponent implements AfterViewInit {
 
       const onScroll = () => {
         const rect = el.getBoundingClientRect();
-        const p = computeScrollProgress(rect, window.innerHeight, {
-          topOffsetPx: parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64,
-          distancePx: window.innerHeight * 2.2,
+        const target = computeScrollProgress(rect, window.innerHeight, {
+          topOffsetPx:
+            parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64,
+          // Give more scroll distance so stages don't flip too fast.
+          distancePx: window.innerHeight * 3.2,
           ease: easeInOutCubic,
         });
 
+        // Smooth progress to avoid jitter + too-fast stage flipping.
+        this.smooth = lerp(this.smooth, target, 0.12);
+
         this.zone.run(() => {
-          this.progress.set(p);
+          this.progress.set(this.smooth);
           // CSS var for animation layers
-          el.style.setProperty('--story-progress', String(p));
+          el.style.setProperty('--story-progress', String(this.smooth));
         });
       };
 
