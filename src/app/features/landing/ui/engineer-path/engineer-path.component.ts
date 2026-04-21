@@ -40,15 +40,26 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
         <p class="mt-2 text-white/80">Скролль вниз — и робот будет собираться по мере прогресса.</p>
 
         <ol class="mt-5 grid gap-2">
-          @for (stage of stages; track stage.id) {
+          @for (stage of stages; track stage.id; let i = $index) {
             <li
               class="forge-surface forge-surface--loose forge-surface--interactive"
               [class.opacity-100]="activeStageId() === stage.id"
               [class.opacity-65]="activeStageId() !== stage.id"
             >
-              <div class="text-sm font-black tracking-wide text-white/85">Этап</div>
-              <div class="mt-1 font-black">{{ stage.title }}</div>
-              <div class="mt-2 text-white/80 leading-relaxed">{{ stage.description }}</div>
+              <div class="flex items-start gap-3">
+                <div
+                  class="mt-0.5 w-8 h-8 rounded-xl grid place-items-center font-black text-white/90 border border-white/10 bg-white/5"
+                  [class.border-[color:var(--c-accent)]]="activeStageId() === stage.id"
+                >
+                  {{ i + 1 }}
+                </div>
+
+                <div class="min-w-0">
+                  <div class="text-sm font-black tracking-wide text-white/85">Этап</div>
+                  <div class="mt-1 font-black">{{ stage.title }}</div>
+                  <div class="mt-2 text-white/80 leading-relaxed">{{ stage.description }}</div>
+                </div>
+              </div>
             </li>
           }
         </ol>

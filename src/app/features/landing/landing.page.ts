@@ -26,10 +26,7 @@ import { EngineerPathComponent } from './ui/engineer-path/engineer-path.componen
         </div>
       </div>
 
-      <div
-        class="relative h-[320px] lg:h-[420px] rounded-2xl border border-white/10 overflow-hidden bg-white/5"
-        aria-hidden="true"
-      >
+      <div class="forge-surface forge-surface--interactive relative h-[320px] lg:h-[420px] overflow-hidden" aria-hidden="true">
         <div
           class="absolute left-5 top-10 w-36 h-36 blur-2xl opacity-70"
           style="background: color-mix(in oklch, var(--c-accent) 75%, transparent)"
@@ -38,9 +35,10 @@ import { EngineerPathComponent } from './ui/engineer-path/engineer-path.componen
           class="absolute right-[-30px] top-[-30px] w-[200px] h-[200px] blur-2xl opacity-70"
           style="background: color-mix(in oklch, var(--c-accent-2) 65%, transparent)"
         ></div>
-        <div class="absolute left-5 bottom-5 rounded-2xl border border-white/10 bg-[rgba(0,0,0,0.15)] backdrop-blur p-4">
-          <div class="font-black">Путь инженера</div>
-          <div class="text-white/80">Скролль и собирай робота</div>
+        <div class="absolute left-5 bottom-5 max-w-[260px] forge-surface forge-surface--tight">
+          <div class="text-sm font-black tracking-wide text-white/85">Путь инженера</div>
+          <div class="mt-1 font-black">Скролль — робот соберётся</div>
+          <div class="mt-1 text-white/80">И ты увидишь прогресс по этапам.</div>
         </div>
       </div>
     </section>
