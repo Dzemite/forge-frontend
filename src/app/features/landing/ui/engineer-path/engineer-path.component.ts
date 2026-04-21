@@ -12,7 +12,7 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
   template: `
     <forge-scroll-story [stages]="stages">
       <div storyBackground>
-        <div class="forge-surface relative p-5 overflow-hidden">
+        <div class="forge-surface forge-surface--loose relative overflow-hidden">
           <forge-robot-assembly />
 
           <div class="relative mt-4 h-2 rounded-full bg-white/10 overflow-hidden">
@@ -42,7 +42,7 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
         <ol class="mt-5 grid gap-2">
           @for (stage of stages; track stage.id) {
             <li
-              class="forge-surface p-4 transition"
+              class="forge-surface forge-surface--tight forge-surface--interactive"
               [class.opacity-100]="activeStageId() === stage.id"
               [class.opacity-65]="activeStageId() !== stage.id"
             >

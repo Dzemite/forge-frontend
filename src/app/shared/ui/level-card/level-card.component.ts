@@ -5,7 +5,7 @@ import type { CourseLevel } from '../../../features/courses/domain/course.model'
   selector: 'forge-level-card',
   standalone: true,
   template: `
-    <article class="rounded-2xl border border-white/10 bg-white/5 p-4">
+    <article class="forge-surface forge-surface--interactive">
       <div class="flex items-center justify-between gap-3">
         <div class="text-xs font-black tracking-widest text-white/80">{{ level.badge }}</div>
         @if (progressPercent !== null) {

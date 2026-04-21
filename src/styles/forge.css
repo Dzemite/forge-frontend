@@ -1,9 +1,61 @@
 @layer components {
   .forge-surface {
     border-radius: 1rem; /* ~rounded-2xl */
-    background: rgba(255, 255, 255, 0.05);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border: 1px solid color-mix(in oklch, var(--forge-sys-outline) 55%, transparent);
+    padding: 1.25rem; /* default inner spacing */
+
+    background:
+      radial-gradient(
+        120% 120% at 20% 0%,
+        color-mix(in oklch, var(--c-accent) 16%, transparent) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        120% 120% at 90% 30%,
+        color-mix(in oklch, var(--c-accent-2) 12%, transparent) 0%,
+        transparent 60%
+      ),
+      rgba(255, 255, 255, 0.045);
+
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+
+    border: 1px solid color-mix(in oklch, var(--forge-sys-outline) 52%, transparent);
+
+    /* subtle premium elevation */
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06) inset,
+      0 0 0 1px rgba(0, 0, 0, 0.25) inset,
+      0 18px 50px rgba(0, 0, 0, 0.35);
+  }
+
+  .forge-surface--tight {
+    padding: 1rem;
+  }
+
+  .forge-surface--loose {
+    padding: 1.5rem;
+  }
+
+  .forge-surface--interactive {
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  }
+
+  .forge-surface--interactive:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in oklch, var(--c-accent) 30%, var(--forge-sys-outline));
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 0 0 1px rgba(0, 0, 0, 0.22) inset,
+      0 22px 60px rgba(0, 0, 0, 0.42);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .forge-surface--interactive {
+      transition: none;
+    }
+
+    .forge-surface--interactive:hover {
+      transform: none;
+    }
   }
 }

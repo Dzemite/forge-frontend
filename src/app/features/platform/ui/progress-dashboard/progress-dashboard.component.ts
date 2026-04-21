@@ -10,7 +10,7 @@ import { LevelCardComponent } from '../../../../shared/ui/level-card/level-card.
   imports: [ProgressBarComponent, LevelCardComponent],
   template: `
     <div class="grid gap-3 lg:grid-cols-3">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+      <div class="forge-surface forge-surface--interactive">
         <div class="text-sm text-white/70">Прогресс</div>
         <div class="mt-1 flex items-end justify-between gap-3">
           <div class="text-3xl font-black">{{ vm().completionPercent }}%</div>
@@ -21,7 +21,7 @@ import { LevelCardComponent } from '../../../../shared/ui/level-card/level-card.
         </div>
       </div>
 
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+      <div class="forge-surface forge-surface--interactive">
         <div class="text-sm text-white/70">Следующий урок</div>
         <div class="mt-1 text-xl font-black">{{ vm().nextLessonTitle }}</div>
         <div class="mt-2 text-white/80">Продолжай — и робот станет ещё ближе.</div>
@@ -33,7 +33,7 @@ import { LevelCardComponent } from '../../../../shared/ui/level-card/level-card.
         </button>
       </div>
 
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+      <div class="forge-surface forge-surface--interactive">
         <div class="text-sm text-white/70">Текущий уровень</div>
         <div class="mt-3">
           <forge-level-card [level]="activeLevel()" [progressPercent]="vm().completionPercent" />
@@ -43,7 +43,7 @@ import { LevelCardComponent } from '../../../../shared/ui/level-card/level-card.
           @for (lvl of levels; track lvl.id) {
             <button
               type="button"
-              class="rounded-xl px-3 py-2 font-black border border-white/10"
+              class="rounded-xl px-3 py-2 font-black border border-white/10 bg-white/5 hover:bg-white/10"
               [class.bg-white/10]="lvl.id === vm().activeLevelId"
               [class.text-white]="lvl.id === vm().activeLevelId"
               [class.text-white/80]="lvl.id !== vm().activeLevelId"
