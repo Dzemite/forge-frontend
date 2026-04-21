@@ -19,7 +19,7 @@
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
 
-    border: 1px solid color-mix(in oklch, var(--forge-sys-outline) 52%, transparent);
+    border: 1px solid transparent;
 
     /* subtle premium elevation */
     box-shadow:
@@ -42,7 +42,7 @@
 
   .forge-surface--interactive:hover {
     transform: translateY(-1px);
-    border-color: color-mix(in oklch, var(--c-accent) 30%, var(--forge-sys-outline));
+    border-color: transparent;
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.08) inset,
       0 0 0 1px rgba(0, 0, 0, 0.22) inset,

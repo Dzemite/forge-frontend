@@ -19,7 +19,7 @@ type FaqItem = {
 
       <mat-accordion class="mt-5 grid gap-2" multi>
         @for (item of items; track item.q) {
-          <mat-expansion-panel class="!rounded-2xl !border !border-white/10 !bg-white/5">
+          <mat-expansion-panel class="forge-surface forge-surface--interactive">
             <mat-expansion-panel-header>
               <mat-panel-title class="!font-black">{{ item.q }}</mat-panel-title>
             </mat-expansion-panel-header>

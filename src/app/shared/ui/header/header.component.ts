@@ -8,12 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [RouterLink, RouterLinkActive, MatButtonModule],
   template: `
     <header
-      class="sticky top-0 z-50 h-[var(--header-height)] px-5 border-b border-white/10 bg-[color:color-mix(in_oklch,var(--c-bg)_82%,transparent)] backdrop-blur"
+      class="sticky top-0 z-50 h-[var(--header-height)] px-5 bg-[color:color-mix(in_oklch,var(--c-bg)_82%,transparent)] backdrop-blur"
     >
       <div class="mx-auto max-w-[1200px] h-full flex items-center justify-between">
         <a class="inline-flex items-center gap-2 font-black" routerLink="/">
           <span
-            class="w-9 h-9 grid place-items-center rounded-xl border border-white/10 bg-white/5"
+            class="w-9 h-9 grid place-items-center rounded-xl bg-white/5"
             aria-hidden="true"
             >⚙️</span
           >

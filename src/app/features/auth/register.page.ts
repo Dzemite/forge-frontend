@@ -21,7 +21,7 @@ import { AuthService } from '../../core/auth/auth.service';
   ],
   template: `
     <section class="min-h-[calc(100dvh-var(--header-height))] grid place-items-center px-5 py-10">
-      <div class="w-full max-w-[520px] rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-5">
+      <div class="w-full max-w-[520px] forge-surface forge-surface--loose">
         <h1 class="text-2xl font-black">Регистрация</h1>
         <p class="mt-2 text-white/80">MVP: создаём cookie-сессию (пока мок API).</p>
 

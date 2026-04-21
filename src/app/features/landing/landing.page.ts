@@ -20,9 +20,9 @@ import { EngineerPathComponent } from './ui/engineer-path/engineer-path.componen
         </div>
 
         <div class="mt-6 grid gap-2 md:grid-cols-3 text-white/80">
-          <div class="pl-3 border-l-2 border-white/10">14 дней гарантия возврата</div>
-          <div class="pl-3 border-l-2 border-white/10">доставка наборов РФ/КЗ/УЗ/ТЖ</div>
-          <div class="pl-3 border-l-2 border-white/10">возраст 7–12 лет</div>
+          <div class="pl-3 border-l-2 border-transparent">14 дней гарантия возврата</div>
+          <div class="pl-3 border-l-2 border-transparent">доставка наборов РФ/КЗ/УЗ/ТЖ</div>
+          <div class="pl-3 border-l-2 border-transparent">возраст 7–12 лет</div>
         </div>
       </div>
 

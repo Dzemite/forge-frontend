@@ -15,7 +15,7 @@ import { ProgressDashboardComponent } from './ui/progress-dashboard/progress-das
         </div>
 
         @if (user(); as u) {
-          <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+          <div class="forge-surface forge-surface--tight">
             <div class="text-sm text-white/70">Аккаунт</div>
             <div class="font-black">{{ u.name }}</div>
           </div>
@@ -29,7 +29,7 @@ import { ProgressDashboardComponent } from './ui/progress-dashboard/progress-das
       <div class="mt-6">
         <button
           type="button"
-          class="rounded-xl px-4 py-3 font-black text-white/90 border border-white/10 bg-white/5 hover:bg-white/10"
+          class="rounded-xl px-4 py-3 font-black text-white/90 bg-white/5 hover:bg-white/10"
           (click)="onLogout()"
         >
           Выйти

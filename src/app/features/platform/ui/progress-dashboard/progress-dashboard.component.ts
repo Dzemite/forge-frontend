@@ -43,7 +43,7 @@ import { LevelCardComponent } from '../../../../shared/ui/level-card/level-card.
           @for (lvl of levels; track lvl.id) {
             <button
               type="button"
-              class="rounded-xl px-3 py-2 font-black border border-white/10 bg-white/5 hover:bg-white/10"
+              class="rounded-xl px-3 py-2 font-black bg-white/5 hover:bg-white/10"
               [class.bg-white/10]="lvl.id === vm().activeLevelId"
               [class.text-white]="lvl.id === vm().activeLevelId"
               [class.text-white/80]="lvl.id !== vm().activeLevelId"
