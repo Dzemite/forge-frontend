@@ -39,7 +39,7 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
         <h2 class="text-3xl font-black">Путь инженера</h2>
         <p class="mt-2 text-white/80">Скролль вниз — и робот будет собираться по мере прогресса.</p>
 
-        <ol class="mt-5 grid gap-2">
+        <ol class="mt-5 grid gap-2 list-none p-0 m-0">
           @for (stage of stages; track stage.id) {
             <li
               class="forge-surface forge-surface--loose forge-surface--interactive"
