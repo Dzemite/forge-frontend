@@ -16,7 +16,7 @@ import { EngineerPathComponent } from './ui/engineer-path/engineer-path.componen
 
         <div class="mt-5 flex flex-wrap gap-2">
           <a mat-raised-button class="!rounded-xl !font-black" routerLink="/auth/register">🚀 Попробовать бесплатно</a>
-          <a mat-button class="!rounded-xl !font-black" href="#path">📹 Смотреть видео</a>
+          <a mat-button class="!rounded-xl !font-black" href="#path">Путь инженера ↓</a>
         </div>
 
         <div class="mt-6 grid gap-2 md:grid-cols-3 text-white/80">
@@ -24,23 +24,23 @@ import { EngineerPathComponent } from './ui/engineer-path/engineer-path.componen
           <div class="pl-3 border-l-2 border-transparent">доставка наборов РФ/КЗ/УЗ/ТЖ</div>
           <div class="pl-3 border-l-2 border-transparent">возраст 7–12 лет</div>
         </div>
-      </div>
 
-      <div class="forge-surface forge-surface--interactive relative h-[320px] lg:h-[420px] overflow-hidden" aria-hidden="true">
-        <div
-          class="absolute left-5 top-10 w-36 h-36 blur-2xl opacity-70"
-          style="background: color-mix(in oklch, var(--c-accent) 75%, transparent)"
-        ></div>
-        <div
-          class="absolute right-[-30px] top-[-30px] w-[200px] h-[200px] blur-2xl opacity-70"
-          style="background: color-mix(in oklch, var(--c-accent-2) 65%, transparent)"
-        ></div>
-        <div class="absolute left-5 bottom-5 max-w-[260px] forge-surface forge-surface--tight">
-          <div class="text-sm font-black tracking-wide text-white/85">Путь инженера</div>
-          <div class="mt-1 font-black">Скролль — робот соберётся</div>
-          <div class="mt-1 text-white/80">И ты увидишь прогресс по этапам.</div>
+        <div class="mt-6 grid gap-2 sm:grid-cols-2">
+          <div class="forge-surface forge-surface--tight">
+            <div class="text-sm font-black tracking-wide text-white/85">Путь инженера</div>
+            <div class="mt-1 font-black">Скролль — робот соберётся</div>
+            <div class="mt-1 text-white/80">Видимый прогресс по этапам, как интерактивная история.</div>
+          </div>
+          <div class="forge-surface forge-surface--tight">
+            <div class="text-sm font-black tracking-wide text-white/85">Без лишней теории</div>
+            <div class="mt-1 font-black">Сразу в практику</div>
+            <div class="mt-1 text-white/80">Короткие занятия + мини‑проекты. Ребёнок видит результат.</div>
+          </div>
         </div>
       </div>
+
+      <!-- Removed separate right hero card to keep top section clean and premium -->
+      <div class="hidden lg:block" aria-hidden="true"></div>
     </section>
 
     <section id="path" class="pb-16">
