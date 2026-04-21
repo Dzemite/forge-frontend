@@ -39,15 +39,15 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
         <h2 class="text-3xl font-black">Путь инженера</h2>
         <p class="mt-2 text-white/80">Скролль вниз — и робот будет собираться по мере прогресса.</p>
 
-        <ol class="mt-5 grid gap-2 list-none p-0 m-0">
-          @for (stage of stages; track stage.id) {
+        <ol class="mt-5 grid gap-3 list-none p-0 m-0">
+          @for (stage of stages; track stage.id; let i = $index) {
             <li
               class="forge-surface forge-surface--loose forge-surface--interactive"
               [class.opacity-100]="activeStageId() === stage.id"
               [class.opacity-65]="activeStageId() !== stage.id"
             >
               <div class="min-w-0">
-                <div class="text-sm font-black tracking-wide text-white/85">Этап</div>
+                <div class="text-sm font-black tracking-wide text-white/85">Этап {{ i + 1 }}</div>
                 <div class="mt-1 font-black">{{ stage.title }}</div>
                 <div class="mt-2 text-white/80 leading-relaxed">{{ stage.description }}</div>
               </div>
