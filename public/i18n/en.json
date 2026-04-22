@@ -1,0 +1,9 @@
+{
+  "nav": {
+    "program": "Program",
+    "faq": "FAQ",
+    "about": "About",
+    "login": "Log in",
+    "register": "Sign up"
+  }
+}

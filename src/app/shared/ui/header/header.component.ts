@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { I18nService } from '../../../core/services/i18n.service';
 
 @Component({
   selector: 'forge-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, MatButtonModule],
+  imports: [RouterLink, RouterLinkActive, MatButtonModule, TranslocoPipe],
   template: `
     <header
       class="sticky top-0 z-50 h-[var(--header-height)] px-5 bg-[color:color-mix(in_oklch,var(--c-bg)_82%,transparent)] backdrop-blur"
@@ -21,23 +23,28 @@ import { MatButtonModule } from '@angular/material/button';
         </a>
 
         <nav class="hidden md:flex items-center gap-4" aria-label="Основная навигация">
-          <a class="font-bold text-white/80 hover:text-white" routerLink="/courses" routerLinkActive="!text-white"
-            >Программа</a
-          >
-          <a class="font-bold text-white/80 hover:text-white" routerLink="/faq" routerLinkActive="!text-white"
-            >FAQ</a
-          >
-          <a class="font-bold text-white/80 hover:text-white" routerLink="/about" routerLinkActive="!text-white"
-            >О нас</a
-          >
+          <a class="font-bold text-white/80 hover:text-white" routerLink="/courses" routerLinkActive="!text-white">
+            {{ 'nav.program' | transloco }}
+          </a>
+          <a class="font-bold text-white/80 hover:text-white" routerLink="/faq" routerLinkActive="!text-white">
+            {{ 'nav.faq' | transloco }}
+          </a>
+          <a class="font-bold text-white/80 hover:text-white" routerLink="/about" routerLinkActive="!text-white">
+            {{ 'nav.about' | transloco }}
+          </a>
         </nav>
 
         <div class="flex items-center gap-2">
-          <a mat-button routerLink="/auth/login">Войти</a>
-          <a mat-raised-button class="!rounded-xl !font-black" routerLink="/auth/register">Регистрация</a>
+          <button mat-button type="button" (click)="i18n.toggle()">{{ i18n.active.toUpperCase() }}</button>
+          <a mat-button routerLink="/auth/login">{{ 'nav.login' | transloco }}</a>
+          <a mat-raised-button class="!rounded-xl !font-black" routerLink="/auth/register">
+            {{ 'nav.register' | transloco }}
+          </a>
         </div>
       </div>
     </header>
   `,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  protected readonly i18n = inject(I18nService);
+}
