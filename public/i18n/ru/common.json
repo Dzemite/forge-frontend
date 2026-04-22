@@ -5,5 +5,35 @@
     "about": "О нас",
     "login": "Войти",
     "register": "Регистрация"
+  },
+  "hero": {
+    "kicker": "ИНЖЕНЕР360",
+    "title": "Кузница инженеров будущего",
+    "subtitle": "От первого светодиода до собственного робота за 3 месяца.",
+    "ctaPrimary": "🚀 Попробовать бесплатно",
+    "ctaSecondary": "Путь инженера ↓"
+  },
+  "auth": {
+    "login": {
+      "title": "Войти",
+      "subtitle": "MVP-авторизация через cookie-сессию (пока мок API).",
+      "email": "Email",
+      "password": "Пароль",
+      "submit": "Войти",
+      "toRegister": "Нет аккаунта? Регистрация",
+      "showPassword": "Показать пароль",
+      "hidePassword": "Скрыть пароль"
+    },
+    "register": {
+      "title": "Регистрация",
+      "subtitle": "MVP: создаём cookie-сессию (пока мок API).",
+      "name": "Имя",
+      "email": "Email",
+      "password": "Пароль",
+      "submit": "Создать аккаунт",
+      "toLogin": "Уже есть аккаунт? Войти",
+      "showPassword": "Показать пароль",
+      "hidePassword": "Скрыть пароль"
+    }
   }
 }
