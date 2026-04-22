@@ -24,21 +24,21 @@ import { I18nService } from '../../../core/services/i18n.service';
 
         <nav class="hidden md:flex items-center gap-4" aria-label="Основная навигация">
           <a class="font-bold text-white/80 hover:text-white" routerLink="/courses" routerLinkActive="!text-white">
-            {{ 'nav.program' | transloco }}
+            {{ 'common.nav.program' | transloco }}
           </a>
           <a class="font-bold text-white/80 hover:text-white" routerLink="/faq" routerLinkActive="!text-white">
-            {{ 'nav.faq' | transloco }}
+            {{ 'common.nav.faq' | transloco }}
           </a>
           <a class="font-bold text-white/80 hover:text-white" routerLink="/about" routerLinkActive="!text-white">
-            {{ 'nav.about' | transloco }}
+            {{ 'common.nav.about' | transloco }}
           </a>
         </nav>
 
         <div class="flex items-center gap-2">
           <button mat-button type="button" (click)="i18n.toggle()">{{ i18n.active.toUpperCase() }}</button>
-          <a mat-button routerLink="/auth/login">{{ 'nav.login' | transloco }}</a>
+          <a mat-button routerLink="/auth/login">{{ 'common.nav.login' | transloco }}</a>
           <a mat-raised-button class="!rounded-xl !font-black" routerLink="/auth/register">
-            {{ 'nav.register' | transloco }}
+            {{ 'common.nav.register' | transloco }}
           </a>
         </div>
       </div>

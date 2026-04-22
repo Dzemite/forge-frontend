@@ -7,6 +7,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   private http = inject(HttpClient);
 
   getTranslation(lang: string) {
-    return this.http.get<Translation>(`/i18n/${lang}.json`);
+    // Domain-based split: common.json is the default scope.
+    return this.http.get<Translation>(`/i18n/${lang}/common.json`);
   }
 }

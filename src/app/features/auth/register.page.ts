@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 import { AuthService } from '../../core/auth/auth.service';
 
@@ -18,26 +19,27 @@ import { AuthService } from '../../core/auth/auth.service';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    TranslocoPipe,
   ],
   template: `
     <section class="min-h-[calc(100dvh-var(--header-height))] grid place-items-center px-5 py-10">
       <div class="w-full max-w-[520px] forge-surface forge-surface--loose">
-        <h1 class="text-2xl font-black">Регистрация</h1>
-        <p class="mt-2 text-white/80">MVP: создаём cookie-сессию (пока мок API).</p>
+        <h1 class="text-2xl font-black">{{ 'auth.register.title' | transloco }}</h1>
+        <p class="mt-2 text-white/80">{{ 'auth.register.subtitle' | transloco }}</p>
 
         <form class="mt-5 grid gap-3" [formGroup]="form" (ngSubmit)="onSubmit()">
           <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Имя</mat-label>
+            <mat-label>{{ 'auth.register.name' | transloco }}</mat-label>
             <input matInput formControlName="name" autocomplete="name" />
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Email</mat-label>
+            <mat-label>{{ 'auth.register.email' | transloco }}</mat-label>
             <input matInput formControlName="email" autocomplete="email" />
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Пароль</mat-label>
+            <mat-label>{{ 'auth.register.password' | transloco }}</mat-label>
             <input
               matInput
               [type]="passwordVisible() ? 'text' : 'password'"
@@ -49,7 +51,7 @@ import { AuthService } from '../../core/auth/auth.service';
               matSuffix
               type="button"
               (click)="togglePasswordVisibility()"
-              [attr.aria-label]="passwordVisible() ? 'Скрыть пароль' : 'Показать пароль'"
+              [attr.aria-label]="passwordVisible() ? ('auth.register.hidePassword' | transloco) : ('auth.register.showPassword' | transloco)"
             >
               <mat-icon>{{ passwordVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
@@ -61,11 +63,11 @@ import { AuthService } from '../../core/auth/auth.service';
             class="!rounded-xl !font-black"
             [disabled]="form.invalid || isLoading()"
           >
-            Создать аккаунт
+            {{ 'auth.register.submit' | transloco }}
           </button>
 
           <a class="text-center font-bold text-white/80 hover:text-white" routerLink="/auth/login">
-            Уже есть аккаунт? Войти
+            {{ 'auth.register.toLogin' | transloco }}
           </a>
         </form>
       </div>
