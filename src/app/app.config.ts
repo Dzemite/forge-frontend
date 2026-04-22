@@ -13,6 +13,7 @@ import { AuthService } from './core/auth/auth.service';
 import { CsrfService } from './core/auth/csrf.service';
 import { csrfInterceptor } from './core/interceptors/csrf.interceptor';
 import { mockApiInterceptor } from './core/services/mock-api/mock-api.interceptor';
+import { I18nService } from './core/services/i18n.service';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 
@@ -30,10 +31,9 @@ export const appConfig: ApplicationConfig = {
       },
       loader: TranslocoHttpLoader,
     }),
-    provideAppInitializer(async () => {
+    provideAppInitializer(() => {
       // i18n (ensure localStorage language is applied at startup)
-      const i18n = inject((await import('./core/services/i18n.service')).I18nService);
-      i18n.init();
+      inject(I18nService).init();
     }),
   ],
 };
