@@ -21,26 +21,19 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(withInterceptors([mockApiInterceptor, csrfInterceptor])),
-    provideAppInitializer(async () => {
-      const csrf = inject(CsrfService);
-      const auth = inject(AuthService);
-
-      await csrf.init();
-      await auth.bootstrap();
-
-      // i18n
-      const i18n = inject((await import('./core/services/i18n.service')).I18nService);
-      i18n.init();
-    }),
     provideTransloco({
       config: {
         availableLangs: ['ru', 'en'],
         defaultLang: 'ru',
-        // Remove this option if your application doesn't support changing language in runtime.
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
       },
       loader: TranslocoHttpLoader,
+    }),
+    provideAppInitializer(async () => {
+      // i18n (ensure localStorage language is applied at startup)
+      const i18n = inject((await import('./core/services/i18n.service')).I18nService);
+      i18n.init();
     }),
   ],
 };
