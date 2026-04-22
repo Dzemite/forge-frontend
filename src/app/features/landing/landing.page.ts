@@ -11,18 +11,18 @@ import { EngineerPathComponent } from './ui/engineer-path/engineer-path.componen
   template: `
     <section class="mx-auto max-w-[1200px] px-5 pt-14 pb-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
       <div>
-        <p class="text-xs font-black tracking-[0.22em] text-white/80">{{ 'landing.hero.kicker' | transloco: {} : 'landing' }}</p>
+        <p class="text-xs font-black tracking-[0.22em] text-white/80">{{ 'hero.kicker' | transloco: {} : 'landing' }}</p>
         <h1 class="mt-3 text-[clamp(32px,4vw,56px)] leading-[1.05] font-black">
-          {{ 'landing.hero.title' | transloco: {} : 'landing' }}
+          {{ 'hero.title' | transloco: {} : 'landing' }}
         </h1>
-        <p class="mt-3 text-lg text-white/85 max-w-[52ch]">{{ 'landing.hero.subtitle' | transloco: {} : 'landing' }}</p>
+        <p class="mt-3 text-lg text-white/85 max-w-[52ch]">{{ 'hero.subtitle' | transloco: {} : 'landing' }}</p>
 
         <div class="mt-5 flex flex-wrap gap-2">
           <a mat-raised-button class="!rounded-xl !font-black" routerLink="/auth/register">
-            {{ 'landing.hero.ctaPrimary' | transloco: {} : 'landing' }}
+            {{ 'hero.ctaPrimary' | transloco: {} : 'landing' }}
           </a>
           <a mat-button class="!rounded-xl !font-black" href="#path">
-            {{ 'landing.hero.ctaSecondary' | transloco: {} : 'landing' }}
+            {{ 'hero.ctaSecondary' | transloco: {} : 'landing' }}
           </a>
         </div>
 
