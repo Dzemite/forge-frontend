@@ -24,22 +24,22 @@ import { AuthService } from '../../core/auth/auth.service';
   template: `
     <section class="min-h-[calc(100dvh-var(--header-height))] grid place-items-center px-5 py-10">
       <div class="w-full max-w-[520px] forge-surface forge-surface--loose">
-        <h1 class="text-2xl font-black">{{ 'auth.register.title' | transloco }}</h1>
-        <p class="mt-2 text-white/80">{{ 'auth.register.subtitle' | transloco }}</p>
+        <h1 class="text-2xl font-black">{{ 'register.title' | transloco: {} : 'auth' }}</h1>
+        <p class="mt-2 text-white/80">{{ 'register.subtitle' | transloco: {} : 'auth' }}</p>
 
         <form class="mt-5 grid gap-3" [formGroup]="form" (ngSubmit)="onSubmit()">
           <mat-form-field appearance="outline" class="w-full">
-            <mat-label>{{ 'auth.register.name' | transloco }}</mat-label>
+            <mat-label>{{ 'register.name' | transloco: {} : 'auth' }}</mat-label>
             <input matInput formControlName="name" autocomplete="name" />
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="w-full">
-            <mat-label>{{ 'auth.register.email' | transloco }}</mat-label>
+            <mat-label>{{ 'register.email' | transloco: {} : 'auth' }}</mat-label>
             <input matInput formControlName="email" autocomplete="email" />
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="w-full">
-            <mat-label>{{ 'auth.register.password' | transloco }}</mat-label>
+            <mat-label>{{ 'register.password' | transloco: {} : 'auth' }}</mat-label>
             <input
               matInput
               [type]="passwordVisible() ? 'text' : 'password'"
@@ -53,8 +53,8 @@ import { AuthService } from '../../core/auth/auth.service';
               (click)="togglePasswordVisibility()"
               [attr.aria-label]="
                 passwordVisible()
-                  ? ('auth.register.hidePassword' | transloco)
-                  : ('auth.register.showPassword' | transloco)
+                  ? ('register.hidePassword' | transloco: {} : 'auth')
+                  : ('register.showPassword' | transloco: {} : 'auth')
               "
             >
               <mat-icon>{{ passwordVisible() ? 'visibility_off' : 'visibility' }}</mat-icon>
@@ -67,11 +67,11 @@ import { AuthService } from '../../core/auth/auth.service';
             class="!rounded-xl !font-black"
             [disabled]="form.invalid || isLoading()"
           >
-            {{ 'auth.register.submit' | transloco }}
+            {{ 'register.submit' | transloco: {} : 'auth' }}
           </button>
 
           <a class="text-center font-bold text-white/80 hover:text-white" routerLink="/auth/login">
-            {{ 'auth.register.toLogin' | transloco }}
+            {{ 'register.toLogin' | transloco: {} : 'auth' }}
           </a>
         </form>
       </div>
