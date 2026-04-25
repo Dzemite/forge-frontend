@@ -1,26 +1,35 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { TranslocoPipe, provideTranslocoScope } from '@jsverse/transloco';
+import {
+  TranslocoPipe,
+  TranslocoScope,
+  provideTranslocoScope,
+} from '@jsverse/transloco';
 import { EngineerPathComponent } from './ui/engineer-path/engineer-path.component';
 
 @Component({
   selector: 'forge-landing-page',
   standalone: true,
   imports: [RouterLink, MatButtonModule, TranslocoPipe, EngineerPathComponent],
-  providers: [provideTranslocoScope('landing')],
+  providers: [
+    provideTranslocoScope({
+      scope: 'landing',
+      alias: 'landing',
+    }),
+  ],
   template: `
     <section class="mx-auto max-w-[1200px] px-5 pt-14 pb-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
       <div>
-        <p class="text-xs font-black tracking-[0.22em] text-white/80">{{ 'hero.kicker' | transloco }}</p>
-        <h1 class="mt-3 text-[clamp(32px,4vw,56px)] leading-[1.05] font-black">{{ 'hero.title' | transloco }}</h1>
-        <p class="mt-3 text-lg text-white/85 max-w-[52ch]">{{ 'hero.subtitle' | transloco }}</p>
+        <p class="text-xs font-black tracking-[0.22em] text-white/80">{{ 'landing.hero.kicker' | transloco }}</p>
+        <h1 class="mt-3 text-[clamp(32px,4vw,56px)] leading-[1.05] font-black">{{ 'landing.hero.title' | transloco }}</h1>
+        <p class="mt-3 text-lg text-white/85 max-w-[52ch]">{{ 'landing.hero.subtitle' | transloco }}</p>
 
         <div class="mt-5 flex flex-wrap gap-2">
           <a mat-raised-button class="!rounded-xl !font-black" routerLink="/auth/register">
-            {{ 'hero.ctaPrimary' | transloco }}
+            {{ 'landing.hero.ctaPrimary' | transloco }}
           </a>
-          <a mat-button class="!rounded-xl !font-black" href="#path">{{ 'hero.ctaSecondary' | transloco }}</a>
+          <a mat-button class="!rounded-xl !font-black" href="#path">{{ 'landing.hero.ctaSecondary' | transloco }}</a>
         </div>
 
         <div class="mt-6 grid gap-2 md:grid-cols-3 text-white/80">
