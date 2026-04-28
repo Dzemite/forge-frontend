@@ -14,15 +14,21 @@ import { I18nService } from '../../../core/services/i18n.service';
       <!-- backdrop -->
       <button
         type="button"
-        class="absolute inset-0 bg-black/60"
+        class="absolute inset-0 bg-black/70 backdrop-blur-[2px]"
         (click)="close.emit()"
         aria-label="Close menu"
       ></button>
 
       <!-- panel -->
       <aside
-        class="absolute right-0 top-0 h-full w-[320px] max-w-[92vw] forge-surface forge-surface--loose rounded-none"
-        style="border-top-left-radius: 18px; border-bottom-left-radius: 18px;"
+        class="absolute right-0 top-0 h-full w-[340px] max-w-[92vw] forge-surface forge-surface--loose rounded-none"
+        style="
+          border-top-left-radius: 18px;
+          border-bottom-left-radius: 18px;
+          background: rgba(10, 10, 14, 0.82);
+          -webkit-backdrop-filter: blur(18px);
+          backdrop-filter: blur(18px);
+        "
         role="dialog"
         aria-label="Navigation"
       >
