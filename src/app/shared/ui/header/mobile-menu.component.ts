@@ -21,11 +21,12 @@ import { I18nService } from '../../../core/services/i18n.service';
 
       <!-- panel -->
       <aside
-        class="forge-mobile-menu-panel absolute right-0 top-0 h-full w-[340px] max-w-[92vw] forge-surface forge-surface--loose rounded-none"
+        class="forge-mobile-menu-panel absolute right-0 top-0 h-full w-[340px] max-w-[92vw] rounded-none"
         style="border-top-left-radius: 18px; border-bottom-left-radius: 18px;"
         role="dialog"
         aria-label="Navigation"
       >
+        <div class="h-full forge-surface forge-surface--loose" style="border-radius: 0; background: transparent; box-shadow: none;">
         <div class="flex items-center justify-between gap-3">
           <div class="font-black">Меню</div>
           <button mat-icon-button type="button" (click)="close.emit()" aria-label="Close">
@@ -55,6 +56,7 @@ import { I18nService } from '../../../core/services/i18n.service';
           <a mat-raised-button class="!rounded-xl !font-black" routerLink="/auth/register" (click)="close.emit()">
             {{ 'nav.register' | transloco }}
           </a>
+        </div>
         </div>
       </aside>
     </div>
