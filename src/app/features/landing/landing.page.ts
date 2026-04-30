@@ -55,7 +55,11 @@ import { EngineerPathComponent } from './ui/engineer-path/engineer-path.componen
       <div class="hidden lg:block" aria-hidden="true"></div>
     </section>
 
-    <section id="path" class="pb-16">
+    <section
+      id="path"
+      class="pt-10 pb-16"
+      style="scroll-margin-top: calc(var(--header-height) + 12px);"
+    >
       <forge-engineer-path />
     </section>
   `,
