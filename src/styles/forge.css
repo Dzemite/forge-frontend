@@ -80,3 +80,30 @@
     backdrop-filter: blur(18px);
   }
 }
+
+/* ScrollStory responsive rules without relying on Tailwind variants */
+.forge-scroll-story-mobile {
+  display: block;
+}
+
+.forge-scroll-story-desktop {
+  display: none;
+}
+
+.forge-scroll-story-spacer {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .forge-scroll-story-mobile {
+    display: none;
+  }
+
+  .forge-scroll-story-desktop {
+    display: flex;
+  }
+
+  .forge-scroll-story-spacer {
+    display: block;
+  }
+}

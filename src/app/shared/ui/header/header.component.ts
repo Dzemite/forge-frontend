@@ -43,7 +43,7 @@ import { MobileMenuOverlayComponent } from './mobile-menu-overlay.component';
           </div>
 
           <!-- Mobile actions -->
-          <div class="flex md:hidden items-center gap-1 shrink-0">
+          <div class="flex md:hidden flex-row items-center gap-1 shrink-0">
             <button mat-icon-button type="button" (click)="i18n.toggle()" aria-label="Toggle language">
               <span class="font-black text-sm">{{ i18n.active.toUpperCase() }}</span>
             </button>

@@ -25,7 +25,7 @@ export type ScrollStoryStage = {
   template: `
     <section class="relative px-5">
       <!-- Mobile: non-sticky, clear stacking -->
-      <div class="md:hidden mx-auto w-full max-w-[1200px] pt-10 pb-10 grid gap-6">
+      <div class="forge-scroll-story-mobile mx-auto w-full max-w-[1200px] pt-10 pb-10 grid gap-6">
         <div class="relative">
           <ng-content select="[storyForeground]" />
         </div>
@@ -35,7 +35,9 @@ export type ScrollStoryStage = {
       </div>
 
       <!-- Desktop+: sticky scroll story -->
-      <div class="hidden md:flex sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] items-center pt-10">
+      <div
+        class="forge-scroll-story-desktop sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] items-center pt-10"
+      >
         <div class="mx-auto w-full max-w-[1200px] flex gap-6 items-center">
           <div class="relative w-[55%]">
             <ng-content select="[storyForeground]" />
@@ -48,7 +50,7 @@ export type ScrollStoryStage = {
       </div>
 
       <!-- Spacer makes scrolling drive the desktop story -->
-      <div class="hidden md:block h-[240vh]" aria-hidden="true"></div>
+      <div class="forge-scroll-story-spacer h-[240vh]" aria-hidden="true"></div>
     </section>
   `,
 })
