@@ -10,18 +10,18 @@ import { I18nService } from '../../../core/services/i18n.service';
   standalone: true,
   imports: [RouterLink, MatButtonModule, MatIconModule, TranslocoPipe],
   template: `
-    <div class="fixed inset-0 z-[100]">
+    <div class="fixed inset-0 z-[9999] isolate">
       <!-- backdrop -->
       <button
         type="button"
-        class="forge-mobile-menu-backdrop absolute inset-0"
+        class="forge-mobile-menu-backdrop fixed inset-0"
         (click)="close.emit()"
         aria-label="Close menu"
       ></button>
 
       <!-- panel -->
       <aside
-        class="forge-mobile-menu-panel absolute right-0 top-0 h-full w-[340px] max-w-[92vw] rounded-none"
+        class="forge-mobile-menu-panel fixed right-0 top-0 h-full w-[340px] max-w-[92vw] rounded-none"
         style="border-top-left-radius: 18px; border-bottom-left-radius: 18px;"
         role="dialog"
         aria-label="Navigation"
