@@ -55,12 +55,14 @@ import { EngineerPathComponent } from './ui/engineer-path/engineer-path.componen
       <div class="hidden lg:block" aria-hidden="true"></div>
     </section>
 
-    <section
-      id="path"
-      class="pt-10 pb-16"
-      style="scroll-margin-top: calc(var(--header-height) + 12px);"
-    >
-      <forge-engineer-path />
+    <section id="path" class="pt-16 pb-16" style="scroll-margin-top: calc(var(--header-height) + 24px);">
+      <div class="mx-auto max-w-[1200px] px-5">
+        <div class="h-px w-full" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);"></div>
+      </div>
+
+      <div class="mt-10">
+        <forge-engineer-path />
+      </div>
     </section>
   `,
 })
