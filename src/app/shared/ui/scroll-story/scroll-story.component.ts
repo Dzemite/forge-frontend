@@ -24,20 +24,31 @@ export type ScrollStoryStage = {
   standalone: true,
   template: `
     <section class="relative px-5">
-      <div class="sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] flex items-center pt-10">
-        <div class="mx-auto w-full max-w-[1200px] flex flex-col gap-6 md:flex-row md:items-center">
-          <div class="relative flex items-center lg:w-[55%]">
+      <!-- Mobile: non-sticky, clear stacking -->
+      <div class="md:hidden mx-auto w-full max-w-[1200px] pt-10 pb-10 grid gap-6">
+        <div class="relative">
+          <ng-content select="[storyForeground]" />
+        </div>
+        <div class="relative">
+          <ng-content select="[storyBackground]" />
+        </div>
+      </div>
+
+      <!-- Desktop+: sticky scroll story -->
+      <div class="hidden md:flex sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] items-center pt-10">
+        <div class="mx-auto w-full max-w-[1200px] flex gap-6 items-center">
+          <div class="relative w-[55%]">
             <ng-content select="[storyForeground]" />
           </div>
 
-          <div class="relative flex items-center lg:w-[45%]">
+          <div class="relative w-[45%]">
             <ng-content select="[storyBackground]" />
           </div>
         </div>
       </div>
 
-      <!-- Spacer makes scrolling drive the story -->
-      <div class="h-[240vh]" aria-hidden="true"></div>
+      <!-- Spacer makes scrolling drive the desktop story -->
+      <div class="hidden md:block h-[240vh]" aria-hidden="true"></div>
     </section>
   `,
 })
@@ -70,6 +81,15 @@ export class ScrollStoryComponent implements AfterViewInit {
       const el = this.host.nativeElement;
 
       const onScroll = () => {
+        // On mobile we render non-sticky layout; keep progress static.
+        if (window.matchMedia('(max-width: 767px)').matches) {
+          this.zone.run(() => {
+            this.progress.set(1);
+            el.style.setProperty('--story-progress', '1');
+          });
+          return;
+        }
+
         const rect = el.getBoundingClientRect();
         const target = computeScrollProgress(rect, window.innerHeight, {
           topOffsetPx:
