@@ -1,15 +1,17 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { I18nService } from '../../../core/services/i18n.service';
-import { MobileMenuComponent } from './mobile-menu.component';
+import { Overlay, OverlayModule } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { MobileMenuOverlayComponent } from './mobile-menu-overlay.component';
 
 @Component({
   selector: 'forge-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, TranslocoPipe, MobileMenuComponent],
+  imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, TranslocoPipe, OverlayModule],
   template: `
     <header class="sticky top-0 z-50 bg-[color:color-mix(in_oklch,var(--c-bg)_82%,transparent)] backdrop-blur overflow-x-clip">
       <div class="h-[var(--header-height)] px-5">
@@ -45,20 +47,35 @@ import { MobileMenuComponent } from './mobile-menu.component';
             <button mat-icon-button type="button" (click)="i18n.toggle()" aria-label="Toggle language">
               <span class="font-black text-sm">{{ i18n.active.toUpperCase() }}</span>
             </button>
-            <button mat-icon-button type="button" (click)="menuOpen.set(true)" aria-label="Open menu">
+            <button mat-icon-button type="button" (click)="openMobileMenu()" aria-label="Open menu">
               <mat-icon>menu</mat-icon>
             </button>
           </div>
         </div>
       </div>
-
-      @if (menuOpen()) {
-        <forge-mobile-menu (close)="menuOpen.set(false)" />
-      }
     </header>
   `,
 })
 export class HeaderComponent {
   protected readonly i18n = inject(I18nService);
-  protected readonly menuOpen = signal(false);
+  private readonly overlay = inject(Overlay);
+
+  openMobileMenu(): void {
+    const overlayRef = this.overlay.create({
+      hasBackdrop: false, // we render our own backdrop inside component
+      scrollStrategy: this.overlay.scrollStrategies.block(),
+      positionStrategy: this.overlay.position().global().top('0').left('0'),
+      width: '100vw',
+      height: '100vh',
+      panelClass: 'forge-mobile-menu-overlay-panel',
+    });
+
+    const portal = new ComponentPortal(MobileMenuOverlayComponent);
+    const cmpRef = overlayRef.attach(portal);
+
+    const sub = cmpRef.instance.close.subscribe(() => {
+      sub.unsubscribe();
+      overlayRef.dispose();
+    });
+  }
 }

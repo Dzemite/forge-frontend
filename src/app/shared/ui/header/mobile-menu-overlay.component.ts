@@ -6,42 +6,39 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { I18nService } from '../../../core/services/i18n.service';
 
 @Component({
-  selector: 'forge-mobile-menu',
+  selector: 'forge-mobile-menu-overlay',
   standalone: true,
   imports: [RouterLink, MatButtonModule, MatIconModule, TranslocoPipe],
   template: `
-    <div class="fixed inset-0 z-[9999] isolate">
-      <!-- backdrop -->
+    <div class="fixed inset-0">
       <button
         type="button"
-        class="forge-mobile-menu-backdrop fixed inset-0"
+        class="absolute inset-0 bg-black/70"
         (click)="close.emit()"
         aria-label="Close menu"
       ></button>
 
-      <!-- panel -->
       <aside
-        class="forge-mobile-menu-panel fixed right-0 top-0 h-full w-[340px] max-w-[92vw] rounded-none"
-        style="border-top-left-radius: 18px; border-bottom-left-radius: 18px;"
+        class="absolute right-0 top-0 h-full w-[340px] max-w-[92vw] p-5"
+        style="background: rgba(10, 10, 14, 0.92); border-top-left-radius: 18px; border-bottom-left-radius: 18px;"
         role="dialog"
         aria-label="Navigation"
       >
-        <div class="h-full forge-surface forge-surface--loose" style="border-radius: 0; background: transparent; box-shadow: none;">
         <div class="flex items-center justify-between gap-3">
-          <div class="font-black">Меню</div>
+          <div class="font-black text-white">Меню</div>
           <button mat-icon-button type="button" (click)="close.emit()" aria-label="Close">
             <mat-icon>close</mat-icon>
           </button>
         </div>
 
         <nav class="mt-5 grid gap-2">
-          <a class="px-3 py-3 rounded-xl bg-white/5 hover:bg-white/10 font-black" routerLink="/courses" (click)="close.emit()">
+          <a class="px-3 py-3 rounded-xl bg-white/5 hover:bg-white/10 font-black text-white" routerLink="/courses" (click)="close.emit()">
             {{ 'nav.program' | transloco }}
           </a>
-          <a class="px-3 py-3 rounded-xl bg-white/5 hover:bg-white/10 font-black" routerLink="/faq" (click)="close.emit()">
+          <a class="px-3 py-3 rounded-xl bg-white/5 hover:bg-white/10 font-black text-white" routerLink="/faq" (click)="close.emit()">
             {{ 'nav.faq' | transloco }}
           </a>
-          <a class="px-3 py-3 rounded-xl bg-white/5 hover:bg-white/10 font-black" routerLink="/about" (click)="close.emit()">
+          <a class="px-3 py-3 rounded-xl bg-white/5 hover:bg-white/10 font-black text-white" routerLink="/about" (click)="close.emit()">
             {{ 'nav.about' | transloco }}
           </a>
         </nav>
@@ -57,12 +54,11 @@ import { I18nService } from '../../../core/services/i18n.service';
             {{ 'nav.register' | transloco }}
           </a>
         </div>
-        </div>
       </aside>
     </div>
   `,
 })
-export class MobileMenuComponent {
+export class MobileMenuOverlayComponent {
   @Output() close = new EventEmitter<void>();
 
   protected readonly i18n = inject(I18nService);
