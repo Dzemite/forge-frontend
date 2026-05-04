@@ -1,16 +1,17 @@
 import {
   AfterViewInit,
   Component,
+  ContentChild,
   DestroyRef,
   ElementRef,
   Input,
   NgZone,
+  TemplateRef,
   computed,
   inject,
   signal,
 } from '@angular/core';
 import { computeScrollProgress, easeInOutCubic, lerp } from '../../utils/scroll-progress';
-import { StoryBackgroundDirective, StoryForegroundDirective } from './scroll-story-markers.directive';
 
 export type ScrollStoryStage = {
   id: string;
@@ -23,18 +24,17 @@ export type ScrollStoryStage = {
 @Component({
   selector: 'forge-scroll-story',
   standalone: true,
-  imports: [StoryForegroundDirective, StoryBackgroundDirective],
   template: `
     <section class="relative px-5">
       @if (isDesktop()) {
         <div class="sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] flex items-center pt-10">
           <div class="mx-auto w-full max-w-[1200px] flex gap-6 items-center">
             <div class="relative w-[55%]">
-              <ng-content select="[storyForeground]" />
+              <ng-container *ngTemplateOutlet="foregroundTpl" />
             </div>
 
             <div class="relative w-[45%]">
-              <ng-content select="[storyBackground]" />
+              <ng-container *ngTemplateOutlet="backgroundTpl" />
             </div>
           </div>
         </div>
@@ -43,11 +43,11 @@ export type ScrollStoryStage = {
       } @else {
         <div class="mx-auto w-full max-w-[1200px] pt-10 pb-10 grid gap-6">
           <div class="relative">
-            <ng-content select="[storyForeground]" />
+            <ng-container *ngTemplateOutlet="foregroundTpl" />
           </div>
 
           <div class="relative">
-            <ng-content select="[storyBackground]" />
+            <ng-container *ngTemplateOutlet="backgroundTpl" />
           </div>
         </div>
       }
@@ -59,11 +59,15 @@ export class ScrollStoryComponent implements AfterViewInit {
   private readonly zone = inject(NgZone);
   private readonly destroyRef = inject(DestroyRef);
 
+  @ContentChild('storyForeground', { read: TemplateRef })
+  foregroundTpl!: TemplateRef<unknown>;
+
+  @ContentChild('storyBackground', { read: TemplateRef })
+  backgroundTpl!: TemplateRef<unknown>;
+
   @Input({ required: false }) stages: ScrollStoryStage[] = [];
 
-  /** Full progress 0..1 */
   readonly progress = signal(0);
-
   private smooth = 0;
   readonly isDesktop = signal(true);
 
