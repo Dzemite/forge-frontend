@@ -15,7 +15,7 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
         <div class="forge-surface forge-surface--loose relative overflow-hidden">
           <forge-robot-assembly />
 
-          <div class="relative mt-4 h-2 rounded-full bg-white/10 overflow-hidden">
+          <div class="relative mt-3 h-2 rounded-full bg-white/10 overflow-hidden">
             <div
               class="h-full bg-gradient-to-r from-[color:var(--c-accent)] to-[color:var(--c-accent-2)]"
               [style.width.%]="progress() * 100"
@@ -24,7 +24,7 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
 
           <!-- highlight sweep -->
           <div
-            class="pointer-events-none absolute inset-0 opacity-35"
+            class="pointer-events-none absolute inset-0 opacity-30"
             style="
               background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.10) 50%, transparent 100%);
               transform: translateX(calc((var(--story-progress) - 0.5) * 120%));

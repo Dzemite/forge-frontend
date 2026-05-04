@@ -41,11 +41,13 @@ export type ScrollStoryStage = {
 
         <div class="h-[240vh]" aria-hidden="true"></div>
       } @else {
-        <div class="mx-auto w-full max-w-[1200px] pt-10 pb-10 grid gap-6">
+        <div class="mx-auto w-full max-w-[1200px] pt-10 pb-24 grid gap-6">
           <div class="relative">
             <ng-content select="[storyForeground]" />
           </div>
-          <div class="relative">
+
+          <!-- Mobile sticky robot (always visible) -->
+          <div class="fixed right-4 bottom-4 z-[60] w-[170px]">
             <ng-content select="[storyBackground]" />
           </div>
         </div>
@@ -86,10 +88,20 @@ export class ScrollStoryComponent implements AfterViewInit {
 
       const onScroll = () => {
         if (!mql.matches) {
-          // Mobile: non-sticky story, keep robot assembled.
+          // Mobile: still drive progress by page scroll so robot can assemble while user scrolls.
+          const rect = el.getBoundingClientRect();
+          const target = computeScrollProgress(rect, window.innerHeight, {
+            topOffsetPx:
+              parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64,
+            distancePx: window.innerHeight * 2.6,
+            ease: easeInOutCubic,
+          });
+
+          this.smooth = lerp(this.smooth, target, 0.18);
+
           this.zone.run(() => {
-            this.progress.set(1);
-            el.style.setProperty('--story-progress', '1');
+            this.progress.set(this.smooth);
+            el.style.setProperty('--story-progress', String(this.smooth));
           });
           return;
         }
