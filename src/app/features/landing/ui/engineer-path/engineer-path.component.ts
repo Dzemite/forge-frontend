@@ -3,12 +3,13 @@ import {
   ScrollStoryComponent,
   type ScrollStoryStage,
 } from '../../../../shared/ui/scroll-story/scroll-story.component';
+import { StoryBackgroundDirective, StoryForegroundDirective } from '../../../../shared/ui/scroll-story/scroll-story-markers.directive';
 import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.component';
 
 @Component({
   selector: 'forge-engineer-path',
   standalone: true,
-  imports: [ScrollStoryComponent, RobotAssemblyComponent],
+  imports: [ScrollStoryComponent, StoryForegroundDirective, StoryBackgroundDirective, RobotAssemblyComponent],
   template: `
     <forge-scroll-story [stages]="stages">
       <div storyBackground>

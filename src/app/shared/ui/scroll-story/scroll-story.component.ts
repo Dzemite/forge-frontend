@@ -10,6 +10,7 @@ import {
   signal,
 } from '@angular/core';
 import { computeScrollProgress, easeInOutCubic, lerp } from '../../utils/scroll-progress';
+import { StoryBackgroundDirective, StoryForegroundDirective } from './scroll-story-markers.directive';
 
 export type ScrollStoryStage = {
   id: string;
@@ -22,17 +23,18 @@ export type ScrollStoryStage = {
 @Component({
   selector: 'forge-scroll-story',
   standalone: true,
+  imports: [StoryForegroundDirective, StoryBackgroundDirective],
   template: `
     <section class="relative px-5">
       @if (isDesktop()) {
         <div class="sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] flex items-center pt-10">
           <div class="mx-auto w-full max-w-[1200px] flex gap-6 items-center">
             <div class="relative w-[55%]">
-              <ng-content select="[storyforeground]" />
+              <ng-content select="[storyForeground]" />
             </div>
 
             <div class="relative w-[45%]">
-              <ng-content select="[storybackground]" />
+              <ng-content select="[storyBackground]" />
             </div>
           </div>
         </div>
@@ -41,11 +43,11 @@ export type ScrollStoryStage = {
       } @else {
         <div class="mx-auto w-full max-w-[1200px] pt-10 pb-10 grid gap-6">
           <div class="relative">
-            <ng-content select="[storyforeground]" />
+            <ng-content select="[storyForeground]" />
           </div>
 
           <div class="relative">
-            <ng-content select="[storybackground]" />
+            <ng-content select="[storyBackground]" />
           </div>
         </div>
       }
