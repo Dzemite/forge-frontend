@@ -12,7 +12,7 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
   imports: [ScrollStoryComponent, StoryForegroundDirective, StoryBackgroundDirective, RobotAssemblyComponent],
   template: `
     <forge-scroll-story [stages]="stages">
-      <div storyBackground>
+      <div storyBackground storyBackground="">
         <div class="md:static md:w-auto fixed right-4 bottom-4 z-[60] w-[170px] forge-surface forge-surface--loose relative overflow-hidden">
           <forge-robot-assembly />
 
@@ -36,7 +36,7 @@ import { RobotAssemblyComponent } from './ui/robot-assembly/robot-assembly.compo
         </div>
       </div>
 
-      <div storyForeground>
+      <div storyForeground storyForeground="">
         <div class="pb-28 md:pb-0">
         <h2 class="text-3xl font-black">Путь инженера</h2>
         <p class="mt-2 text-white/80">Скролль вниз — и робот будет собираться по мере прогресса.</p>
