@@ -35,9 +35,7 @@ export type ScrollStoryStage = {
       </div>
 
       <!-- Desktop+: sticky scroll story -->
-      <div
-        class="forge-scroll-story-desktop sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] items-center pt-10"
-      >
+      <div class="forge-scroll-story-desktop sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] items-center pt-10">
         <div class="mx-auto w-full max-w-[1200px] flex gap-6 items-center">
           <div class="relative w-[55%]">
             <ng-content select="[storyForeground]" />
