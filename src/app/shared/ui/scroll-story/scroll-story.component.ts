@@ -25,9 +25,7 @@ export type ScrollStoryStage = {
   template: `
     <section class="relative px-5">
       @if (isDesktop()) {
-        <div
-          class="sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] flex items-center pt-10"
-        >
+        <div class="sticky top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] flex items-center pt-10">
           <div class="mx-auto w-full max-w-[1200px] flex gap-6 items-center">
             <div class="relative w-[55%]">
               <ng-content select="[storyForeground]" />
@@ -41,13 +39,12 @@ export type ScrollStoryStage = {
 
         <div class="h-[240vh]" aria-hidden="true"></div>
       } @else {
-        <div class="mx-auto w-full max-w-[1200px] pt-10 pb-24 grid gap-6">
+        <div class="mx-auto w-full max-w-[1200px] pt-10 pb-10 grid gap-6">
           <div class="relative">
             <ng-content select="[storyForeground]" />
           </div>
 
-          <!-- Mobile sticky robot (always visible) -->
-          <div class="fixed right-4 bottom-4 z-[60] w-[170px]">
+          <div class="relative">
             <ng-content select="[storyBackground]" />
           </div>
         </div>
@@ -87,34 +84,16 @@ export class ScrollStoryComponent implements AfterViewInit {
       mql.addEventListener('change', updateLayout);
 
       const onScroll = () => {
-        if (!mql.matches) {
-          // Mobile: still drive progress by page scroll so robot can assemble while user scrolls.
-          const rect = el.getBoundingClientRect();
-          const target = computeScrollProgress(rect, window.innerHeight, {
-            topOffsetPx:
-              parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64,
-            distancePx: window.innerHeight * 2.6,
-            ease: easeInOutCubic,
-          });
-
-          this.smooth = lerp(this.smooth, target, 0.18);
-
-          this.zone.run(() => {
-            this.progress.set(this.smooth);
-            el.style.setProperty('--story-progress', String(this.smooth));
-          });
-          return;
-        }
-
         const rect = el.getBoundingClientRect();
+        const mult = mql.matches ? 3.2 : 2.6;
         const target = computeScrollProgress(rect, window.innerHeight, {
           topOffsetPx:
             parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64,
-          distancePx: window.innerHeight * 3.2,
+          distancePx: window.innerHeight * mult,
           ease: easeInOutCubic,
         });
 
-        this.smooth = lerp(this.smooth, target, 0.12);
+        this.smooth = lerp(this.smooth, target, mql.matches ? 0.12 : 0.18);
 
         this.zone.run(() => {
           this.progress.set(this.smooth);
